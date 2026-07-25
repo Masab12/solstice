@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-brand: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-200: #fed7aa;
+  --color-brand-400: #f97316;
+  --color-brand-500: #c2410c;
+  --color-brand-600: #9a3412;
+  --color-brand-700: #7c2d12;
+
+  --color-ambient-dune: #fdba74;
+  --color-ambient-ember: #fb923c;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  color: #171717;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@utility glass-panel {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(255 255 255 / 0.75),
+    rgb(255 255 255 / 0.45)
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgb(255 255 255 / 0.7);
+  box-shadow: inset 0 2.5px 4px rgb(255 255 255 / 0.8);
+}
+
+@utility glass-surface {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(255 255 255 / 0.82),
+    rgb(255 255 255 / 0.5)
+  );
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border: 1px solid rgb(255 255 255 / 0.7);
+}
+
+@keyframes beacon {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes cell-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.beacon {
+  transform-origin: center;
+  animation: beacon 2.4s ease-in-out infinite;
+}
+
+.cell-in {
+  opacity: 0;
+  animation: cell-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .beacon,
+  .cell-in {
+    animation: none;
+    opacity: 1;
+  }
+}
